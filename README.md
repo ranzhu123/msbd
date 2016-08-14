@@ -36,18 +36,23 @@
 @-moz-document url-prefix(){/*样式*/}
 ```
 ###调试浏览器的
+```
 只让ie6看到：*html
 会让ie7看到：*+html
 只让ff看到：root body
 只让ff、ie8看到：html>/**/body
 如果只是不让ie6看到：html>body
 如果不让ff、ie8看到：*body
+```
 
 ###针对具体属性
+```
 只让ie6看到在属性前加_  {_color:#000;}
 只让ie7看到使用+和_ {+color:#f00;!;_color:#000;/*ie6还是000*/}
+```
 
 ##hack
+```
 \9 例：margin:0px auto\9;   ie6-10识别
 *color  /*ie6、7*/
 _color /*ie6*/
@@ -58,8 +63,10 @@ _color /*ie6*/
 “\9″ IE6/IE7/IE8/IE9/IE10都生效
 “\0″ IE8/IE9/IE10都生效，是IE8/9/10的hack
 “\9\0″ 只对IE9/IE10生效，是IE9/10的hack
+```
 
 ###浏览器bug
+```
 1.bug：ie6双边距，当元素浮动并且有margin的时候，ie6下会双边距
   解决办法：添加属性display:inline即可
 2.bug：奇数宽高bug。外层宽高为奇数宽高的时候，里面使用绝对定位的时候会有1px间隔（我这没有这情况使用ie5）
@@ -77,26 +84,33 @@ _color /*ie6*/
   解决办法：display:inline-block; 或者 overflow:hidden;
 9.bug:margin塌陷
   解决办法：创建BFC
+```
 
 ####BFC布局规则
+```
 内部的Box会在垂直方向，一个接一个地放置。
 Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
 每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
 BFC的区域不会与float box重叠。
 BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
 计算BFC的高度时，浮动元素也参与计算
+```
 
 ##响应式
 ###媒体查询media query
+```
 判断 分辨率精细的媒体device-pixel-ratio
+```
 
 ###flexbox布局
+```
 flex-direction  //方向
 flex-wrap       //换行
 flex-flow       //方向和换行
 justify-content //主轴对齐方式
 align-items     //交叉轴对齐方式
 align-content   //多跟轴线对齐方式
+```
 
 ##动画
 ```css
@@ -114,6 +128,7 @@ align-content   //多跟轴线对齐方式
 
 #html
 ##html5新特性、语义化
+```
 1.声明改变 doctype
 2.语义化标签 header\footer利于SEO，简洁，方便阅读和维护
 3.引号标签可以不加不闭合，节省服务器渲染的字节量
@@ -123,17 +138,22 @@ align-content   //多跟轴线对齐方式
 7.audio、video
 8.autofocus聚焦到输入框
 还有很多
-
+```
 
 #js
 ##闭包、原型链
+```
 闭包就是在函数内部的函数，作用是让变量常驻内存，让外部可以访问函数内部的变量和方法。
 原型链是每个对象都有一个属性是__proto__指向创建它的函数的 propotype， 实现继承 的一种方式。
+```
 
 ##promise
 
 ##AMD、CMD
+```
 AMD异步加载，然后使用，CMD使用的时候再异步加载。
+```
+
 #webpack
 ##css插件
 ```
@@ -142,6 +162,7 @@ AMD异步加载，然后使用，CMD使用的时候再异步加载。
 
 #安全
 ##跨域
+```
 防止XSS攻击
 方法：
 1.document.domain+frame设置，解决主域相同二级域名不同的情况。
@@ -150,37 +171,52 @@ AMD异步加载，然后使用，CMD使用的时候再异步加载。
 4.postMessage 也需要iframe，往iframe里postMessage，iframe监听message做处理
 5.jsonp，动态添加标签
 5.html5的CORS，请求头添加Orgin，包含页面的头部（协议、域名、端口），服务器判断是否允许，可以设置限制域。
+```
 ##安全问题
 ###客户端脚本安全（前端）
+```
 1.跨站脚本攻击（XSS）黑客通过html注入篡改网页，插入了恶意脚本，获取用户的信息，控制用户浏览器。最常见的是获取cookie对象，从而发起“cookie劫持”。
 解决办法：a.输入检查，过滤掉敏感的关键字；b.将cookie和用户ip绑定；c.为Cookie植入HttpOnly，js就不能操作Cookie了，发送ajax的时候会被放在浏览器头中发送。
 2.跨站点请求伪造（CSRF）
   解决办法：输入验证码
+```
 
 ###服务器端应用安全
+```
 1.SQL注入
 解决办法：①参数拼接的方式查sql②关闭web服务器的错误回显功能③数据库自身使用最小权限原则，不同数据库用不同账户
 2.文件上传
 解决办法：①通过后缀来判断格式②读取文件前两个字符和格式进行判断③如果为图片则应该有高度宽度属性
+```
+
 ##安全扫描工具
+```
 Acunetix Web Vulnerability Scanner 下载地址http://www.91ri.org/4020.html
 可以检查各种漏洞
+```
+
 #性能
 ##方法
 ###减少请求数量
+```
 1.将小图标合并成sprite图或者iconfont字体
 2.用base64减少不必要的网络请求，将小图片使用base64编码载入页面
 3.图片延迟加载，先加载首屏
 4.js/css按需打包
 5.延迟加载ga统计（百度统计）在script里动态引入另一个js，或者加上setTimeout动态引入
+```
+
 ###减少请求大小
+```
 1.js/css/html压缩
 2.gzip压缩
 3.js/css按需加载
 4.图片压缩，jgp优化
 5.webp优化，srcset优化（响应式图片）
+```
 
 ###具体
+```
 1.合并图标可以使用gulp.spritesmith插件，不适合做移动端，iconfont纯色图标
 2.base64使用cssnano压缩css时可能会有误伤，直接把data:img改为data:image即可
 3.图片延迟加载，固定好高度宽度防抖动，同时要设置个加载中的图片，可以使用 lazysizes.js，然后修改相应样式达到最优化
@@ -193,23 +229,31 @@ Acunetix Web Vulnerability Scanner 下载地址http://www.91ri.org/4020.html
 10.webpack按需加载，使用require.ensure达到按需加载
 11.压缩图片，jpg优化：手动处理的话可以去tinypng效果较好，gulp子任务处理的话可以使用gulp-imagemin插件，自动化处理。可以转成jpg的就不用png大小查8倍！
 12.webp优化&srcset优化：判断webp支持度，然后替换成webp的图片格式
+```
 
 ##缓存
 ###缓存类型
+```
 1.浏览器缓存
 2.代理服务器缓存
 3.网关缓存
+```
+
 ###缓存方法
+```
 1.应用程序实现的动态页面缓存，直接从服务器加载对应的缓存文件，增加了查找缓存文件时间。
 2.使用反向代理服务器的缓存，利用类似nginx的反向代理服务器，用反向代理实现了类似第一种的缓存实现。
 3.客户端浏览器缓存，在头部添加，Last-Modified,If-modified-Since,Expires,Cache-Control等标识，和服务器进行协商
 ①通过Last-Modified,If-Modified-Since方式和服务器通信，客户端发出http请求中包含 If-Modified-Since，如果服务器没有修改，服务器返回304想用代码客户端则直接用本机缓存内容显示结果。
 ②通过Expires,Cache-Control控制，客户端发现如果上次请求的页面还未到期，通过Expires或者Cache-Control进行辨别，则直接显示本机缓存，不与服务器通信。
+```
+
 ###总结
+```
 1.一般高并发的应用程序，都在web蹭上采用了集中缓存，一般静态资源（图片， js，css）都会采用nginx反向代理+客户端缓存来实现。
 2.对于门户网站，尤其是首页的新闻，一般都会缓存起来，可以通过反向代理也可以通过应用程序缓存实现方式
 3 对于下载或者视频网站，由于数据传输比较大，直接采用浏览器本地缓存实现。
-
+```
 
 
 
