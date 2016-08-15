@@ -255,5 +255,10 @@ Acunetix Web Vulnerability Scanner 下载地址http://www.91ri.org/4020.html
 3 对于下载或者视频网站，由于数据传输比较大，直接采用浏览器本地缓存实现。
 ```
 
-
+#其他
+##搭建企业cnpm库
+```
+使用mysql 、linux
+实例地址 [搭建企业内部cnpm](http://blog.csdn.net/wyc_cs/article/details/51568925 "链接")
+```
 
